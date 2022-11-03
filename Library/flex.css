@@ -1,0 +1,30 @@
+header {
+  display: flex;
+  gap: 2px;
+  background-color: navy;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  /* height: 200px; */
+}
+
+.menu {
+  background-color: rgb(88, 205, 245);
+  border-radius: 5px;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #2e2e2e;
+  max-width: 150px;
+  align-items: center;
+}
+
+.menu img{
+    width: 80%;
+}
+
+.menu .text{
+    text-align: center;
+}
