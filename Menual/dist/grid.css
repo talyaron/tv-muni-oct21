@@ -1,6 +1,6 @@
 .container {
   display: grid;
-  grid-template-columns: repeat(8, 500px);
+  grid-template-columns: repeat(8, 1fr);
   background-color: tomato;
   gap: 3px;
 }
