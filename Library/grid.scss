@@ -1,0 +1,39 @@
+.container {
+  display: grid;
+  grid-template-columns:repeat(8, 500px);
+  background-color: tomato;
+  gap: 3px;
+
+  @media only screen and (max-width: 1600px) {
+    grid-template-columns: auto auto auto auto;
+  }
+
+
+  @media only screen and (max-width: 1200px) {
+    grid-template-columns: auto auto auto;
+  }
+
+  @media only screen and (max-width: 800px) {
+    grid-template-columns: auto auto;
+  }
+}
+
+.menu {
+  background-color: rgb(88, 205, 245);
+  border-radius: 5px;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #2e2e2e;
+  // max-width: 150px;
+  align-items: center;
+
+  img {
+    width: 80%;
+  }
+  .text {
+    text-align: center;
+  }
+}

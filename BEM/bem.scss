@@ -1,0 +1,26 @@
+html{
+    font-size:16px;
+}
+
+.menu{
+    display: flex;
+    gap: 4px;
+
+    &__item{
+        background-color: rgb(248, 193, 183);
+        padding: 1.5rem;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+
+        &--important{
+            background-color: tomato;
+            font-size: 2rem;
+        }
+
+        &--small{
+            font-size: .8rem;
+            background-color: lightblue;
+        }
+    }
+}
