@@ -1,59 +1,89 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import "./App.css";
 import Button from "@mui/material/Button";
-import DeleteSharpIcon from '@mui/icons-material/DeleteSharp';
+import DeleteSharpIcon from "@mui/icons-material/DeleteSharp";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
 
 function App() {
   const [count, setCount] = useState<number>(0);
+  const [bread, setBread] = useState("dog");
+  const [breeds, setBreads] = useState<Array<string>>([]);
+  const [imgs, setImgs] = useState([]);
+
+  function handleChange(ev: any) {
+    try {
+      setBread(ev.target.value);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await axios.get("https://dog.ceo/api/breeds/list/all");
+      const { message } = data;
+      console.log(message);
+      const breeds2: Array<string> = Object.keys(message);
+      setBreads(breeds2);
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      if (bread !== "dog") {
+        const { data } = await axios.get(
+          `https://dog.ceo/api/breed/${bread}/images`
+        );
+        const { message } = data;
+
+        setImgs(message)
+        console.log(message);
+      }
+    })();
+  }, [bread]);
 
   return (
     <div className="App">
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Bread</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              value={bread}
+              label="Bread"
+              onChange={handleChange}>
+              {breeds.map((bread, i) => {
+                return (
+                  <MenuItem key={i} value={bread}>
+                    {bread}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+        
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <Button
-          variant="outlined"
-          onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </Button>
-        <Button
-          variant="contained"
-          color='secondary'
-          onClick={() => setCount((count) => count + 1)}>
-          secondry count is {count}
-        </Button>
-        <Button
-          variant="contained"
-          color='warning'
-          startIcon={<DeleteSharpIcon />}
-          onClick={() => setCount((count) => count + 1)}>
-          secondry count is {count}
-        </Button>
-        <Button
-          variant="text"
-          onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </Button>
-        <Button
-          variant="contained"
-          onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </Button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <ImageList sx={{ width: 500, height: 450 }} cols={3} rowHeight={164}>
+      {imgs.map((img, i) => {
+        console.log(img)
+        return <ImageListItem key={`img=${i}`}>
+          <img
+            src={`${img}?w=164&h=164&fit=crop&auto=format`}
+            srcSet={`${img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+            alt={'stam'}
+            loading="lazy"
+          />
+        </ImageListItem>
+      })}
+    </ImageList>
     </div>
   );
 }
