@@ -1,9 +1,11 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import "./App.css";
+import Button from "@mui/material/Button";
+import DeleteSharpIcon from '@mui/icons-material/DeleteSharp';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState<number>(0);
 
   return (
     <div className="App">
@@ -17,9 +19,34 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
+        <Button
+          variant="outlined"
+          onClick={() => setCount((count) => count + 1)}>
           count is {count}
-        </button>
+        </Button>
+        <Button
+          variant="contained"
+          color='secondary'
+          onClick={() => setCount((count) => count + 1)}>
+          secondry count is {count}
+        </Button>
+        <Button
+          variant="contained"
+          color='warning'
+          startIcon={<DeleteSharpIcon />}
+          onClick={() => setCount((count) => count + 1)}>
+          secondry count is {count}
+        </Button>
+        <Button
+          variant="text"
+          onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </Button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
@@ -28,7 +55,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
