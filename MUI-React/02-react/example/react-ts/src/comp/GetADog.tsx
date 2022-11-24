@@ -28,12 +28,14 @@ async function getDogAPI(): Promise<Dog | false> {
 
 const GetADog = () => {
   const [dog, setDog] = useState<Dog | false>(false);
+  
   async function handleGetDog() {
     console.log("get dog");
     const dog = await getDogAPI();
     console.log(dog);
     setDog(dog);
   }
+
   return (
     <div>
       {dog ? <Box src={dog.message} text="A random dog" /> : null}
