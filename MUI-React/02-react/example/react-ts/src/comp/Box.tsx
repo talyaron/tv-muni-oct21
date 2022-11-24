@@ -1,12 +1,13 @@
 import {FC} from 'react';
 import './box.scss';
 
-interface BoxProps{
-    src:string;
-    text:string;
+interface ImageProps{
+  src:string;
+  text:string;
 }
 
-const Box:FC<BoxProps> = ({src, text}) => {
+
+const Box:FC<ImageProps> = ({src, text }) => {
   return (
     <div className='box'>
         <img src={src} alt={text} />
