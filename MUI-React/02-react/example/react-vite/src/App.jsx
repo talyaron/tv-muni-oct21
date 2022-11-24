@@ -1,34 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import "./App.scss";
+import Box from "./comp/Box";
+
+const images = [
+  {src:'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/summer-flowers-star-flower-1648071187.jpg', text:'try 1'},
+  {src:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXmRYRJUViCj7q4Z1NiwyfIv9YEq702HgQfFGh_ksX&s', text:'try 2'},
+  {src:'https://i.pinimg.com/originals/b5/a5/50/b5a550df8b2676169596e3316752d25c.jpg', text:'try 3'}
+]
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className="stam">
+      <div>Test w334543</div>
+      <div>Test 256456456</div>
+      {images.map((img, i)=>{
+        return <Box src={img.src} text={img.text} />
+      })}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
